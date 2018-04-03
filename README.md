@@ -11,6 +11,9 @@ Additions:
 Installation for OpenCV and config options were setup for the user in the new install script.
 Custom config allows for a standardized install
 
+
+
+
 Install Instructions
 
 git clone https://github.com/mhubrig/PiVision.git
