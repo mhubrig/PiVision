@@ -451,17 +451,19 @@ echo "export WORKON_HOME=$HOME/.virtualenvs" >> ~/.profile
 echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.profile
 source ~/.profile
 mkvirtualenv cv -p python2
-workon cv
-pip install numpycd ~/opencv-3.1.0/
-mkdir build
-cd build
-cmake -D CMAKE_BUILD_TYPE=RELEASE \
+
+
+#workon cv
+#pip install numpycd ~/opencv-3.1.0/
+#mkdir build
+#cd build
+#cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
     -D INSTALL_PYTHON_EXAMPLES=ON \
     -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-3.1.0/modules \
     -D BUILD_EXAMPLES=ON
-make -j4
-sudo make install
-sudo ldconfig
-cd ~/.virtualenvs/cv/lib/python2.7/site-packages/
-ln -s /usr/local/lib/python2.7/site-packages/cv2.so cv2.so
+#make -j4
+#sudo make install
+#sudo ldconfig
+#cd ~/.virtualenvs/cv/lib/python2.7/site-packages/
+#ln -s /usr/local/lib/python2.7/site-packages/cv2.so cv2.so
