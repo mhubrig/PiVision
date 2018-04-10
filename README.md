@@ -63,3 +63,9 @@ sudo chmod +x /var/www/html/macros/motion_event.sh
 sudo chown www-data:www-data /var/www/html/macros/motion_event.sh
 sudo chown www-data:www-data /var/www/html/macros/configfile.cfg
 sudo nano /var/www/html/macros/configfile.cfg #and replace tokennurl and chatid with your own.
+
+sudo su - www-data
+cd /var/www/html/macros/
+./motion_event.sh 1
+
+Telegram is now setup to send notifacations and a picture when movement is detected.
