@@ -20,7 +20,7 @@ git clone https://github.com/mhubrig/PiVision.git
 
 cd PiVision
 
-chmod 777 *.sh
+sudo chmod 777 *.sh
 
 ./install.sh
 
