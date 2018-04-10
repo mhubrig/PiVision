@@ -24,6 +24,8 @@ sudo chmod 777 *.sh
 
 ./install.sh
 
+Select yes, to start camera now.
+
 Continute install of system packages and requirements.
 
 Approximate Install Time: 2 - 3 hours on network connectivity.
