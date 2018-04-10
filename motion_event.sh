@@ -24,3 +24,4 @@ then
     -F photo="@${webfolder}/cam_new.jpg" \
     -F caption="Motion detected on ${cameraName}" >> ${curlout} &
   
+fi
