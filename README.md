@@ -20,7 +20,7 @@ git clone https://github.com/mhubrig/PiVision.git
 
 cd PiVision
 
-sudo chmod 777 *.sh
+sudo chmod +x *.sh *.cfg
 
 ./install.sh
 
@@ -28,9 +28,35 @@ Select yes, to start camera now.
 
 Continute install of system packages and requirements.
 
-Approximate Install Time: 2 - 3 hours on network connectivity.
+Approximate Install Time: 1-2 hours.
 
 
-To setup notifacations and recieve messages, 
+Telegram Information for Adding Motion Notifiacations
 
--TELEGRAM TUTORIAL WITH AUTH KEY
+Start by installing the Telegram app on your phone or desktop (this process will create your account – https://telegram.org), and then sign up for a Telegram bot using Botfather with the instructions here: https://core.telegram.org/bots#6-botfather.
+ 
+Make a note of your API Token and bot username (the one that must end in bot)
+ 
+We now need to obtain your bot’s chatid. To do this, enter the bot username in the Telegram search field (either in Contacts or Chats), then select the bot to initiate a chat with it, and then send a message. This process will establish a conversation (or chat) between you and the bot, identified as a chatid.
+ 
+To find the chatid, enter the following URL in a browser (your API token goes after and right next to /bot):
+
+
+https://api.telegram.org/botReplaceThisWithTheBotFatherToken/getUpdates
+ 
+e.g, if your API is “123456789:jekcjrnekjrhteuncheiucnf”:
+
+
+https://api.telegram.org/bot123456789:jekcjrnekjrhteuncheiucnf/getUpdates
+ 
+You need the “id” number from the output it produces:
+
+
+"message":{"message_id":2872,"from":{"id":987654321,
+ 
+In the example above, this would be “987654321”
+ 
+If you only see {“ok”:true,”result”:[]}, it means you haven’t yet sent your bot a message from your account.
+
+
+Navigate to sudo nano /var/www/html/macros/configfile.cfg and replace tokennurl and chatid with your own.
