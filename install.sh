@@ -65,57 +65,6 @@ if [ ! "${rpicamdirold:0:1}" == "" ]; then
 fi
 
 
-#Allow for a quiet install
-rm exitfile.txt >/dev/null 2>&1
-if [ $# -eq 0 ] || [ "$1" != "q" ]; then
-   exec 3>&1
-   dialog                                         \
-   --separate-widget $'\n'                        \
-   --title "Configuration Options"    \
-   --backtitle "$backtitle"					   \
-   --form ""                                      \
-   0 0 0                                          \
-   "Cam subfolder:"        1 1   "$rpicamdir"   1 32 15 0  \
-   "Autostart:(yes/no)"    2 1   "$autostart"   2 32 15 0  \
-   "Server:(apache/nginx/lighttpd)" 3 1   "$webserver"   3 32 15 0  \
-   "Webport:"              4 1   "$webport"     4 32 15 0  \
-   "User:(blank=nologin)"  5 1   "$user"        5 32 15 0  \
-   "Password:"             6 1   "$webpasswd"   6 32 15 0  \
-   "jpglink:(yes/no)"      7 1   "$jpglink"     7 32 15 0  \
-   "phpversion:(5/7)"      8 1   "$phpversion"  8 32 15 0  \
-   2>&1 1>&3 | {
-      read -r rpicamdir
-      read -r autostart
-      read -r webserver
-      read -r webport
-      read -r user
-      read -r webpasswd
-	  read -r jpglink
-	  read -r phpversion
-   if [ -n "$webport" ]; then
-      sudo echo "#This is edited config file for main installer. Put any extra options in here." > ./config.txt
-      sudo echo "rpicamdir=\"$rpicamdir\"" >> ./config.txt
-      sudo echo "webserver=\"$webserver\"" >> ./config.txt
-      sudo echo "webport=\"$webport\"" >> ./config.txt
-      sudo echo "user=\"$user\"" >> ./config.txt
-      sudo echo "webpasswd=\"$webpasswd\"" >> ./config.txt
-      sudo echo "autostart=\"$autostart\"" >> ./config.txt
-      sudo echo "jpglink=\"$jpglink\"" >> ./config.txt
-      sudo echo "phpversion=\"$phpversion\"" >> ./config.txt
-      sudo echo "" >> ./config.txt
-   else
-      echo "exit" > ./exitfile.txt
-   fi
-   }
-   exec 3>&-
-
-   if [ -e exitfile.txt ]; then
-      rm exitfile.txt
-      exit
-   fi
-
-   source ./config.txt
-fi
 
 if [ ! "${rpicamdir:0:1}" == "" ]; then
    rpicamdir=/$rpicamdir
@@ -427,43 +376,18 @@ if [ $# -eq 0 ] || [ "$1" != "q" ]; then
    fn_reboot
 fi
 
+#further dependencies
 
 sudo apt-get install build-essential cmake pkg-config
+
 sudo apt-get install libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev
+
 sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+
 sudo apt-get install libxvidcore-dev libx264-dev
+
 sudo apt-get install libgtk2.0-dev
+
 sudo apt-get install libatlas-base-dev gfortran
+
 sudo apt-get install python2.7-dev python3-dev
-cd ~
-wget -O opencv.zip https://github.com/Itseez/opencv/archive/3.1.0.zip
-unzip opencv.zip
-wget -O opencv_contrib.zip https://github.com/Itseez/opencv_contrib/archive/3.1.0.zip
-unzip opencv_contrib.zip
-wget https://bootstrap.pypa.io/get-pip.py
-sudo python get-pip.py
-sudo pip install virtualenv virtualenvwrapper
-sudo rm -rf ~/.cache/pip
-export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
-echo -e "\n# virtualenv and virtualenvwrapper" >> ~/.profile
-echo "export WORKON_HOME=$HOME/.virtualenvs" >> ~/.profile
-echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.profile
-source ~/.profile
-mkvirtualenv cv -p python2
-
-
-#workon cv
-#pip install numpycd ~/opencv-3.1.0/
-#mkdir build
-#cd build
-#cmake -D CMAKE_BUILD_TYPE=RELEASE \
-    -D CMAKE_INSTALL_PREFIX=/usr/local \
-    -D INSTALL_PYTHON_EXAMPLES=ON \
-    -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-3.1.0/modules \
-    -D BUILD_EXAMPLES=ON
-#make -j4
-#sudo make install
-#sudo ldconfig
-#cd ~/.virtualenvs/cv/lib/python2.7/site-packages/
-#ln -s /usr/local/lib/python2.7/site-packages/cv2.so cv2.so
