@@ -22,7 +22,7 @@ sudo apt-get update
 
 sudo raspi-config
 
-then, ensure camera is selected as on for the system
+then, ensure camera is selected as on for the system under interfacing options
 
 git clone https://github.com/mhubrig/PiVision.git
 
