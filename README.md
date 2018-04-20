@@ -16,6 +16,10 @@ Custom config allows for a standardized install.
 
 Install Instructions
 
+sudo apt-get upgrade (ensures clean install for package finding)
+
+sudo apt-get update
+
 git clone https://github.com/mhubrig/PiVision.git
 
 cd PiVision
