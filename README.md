@@ -16,9 +16,9 @@ Custom config allows for a standardized install.
 
 Install Instructions
 
-sudo apt-get upgrade (ensures clean install for package finding)
-
 sudo apt-get update
+
+sudo apt-get upgrade (ensures clean install for package finding)
 
 sudo raspi-config
 
