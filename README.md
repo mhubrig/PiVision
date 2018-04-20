@@ -20,6 +20,10 @@ sudo apt-get upgrade (ensures clean install for package finding)
 
 sudo apt-get update
 
+sudo raspi-config
+
+then, ensure camera is selected as on for the system
+
 git clone https://github.com/mhubrig/PiVision.git
 
 cd PiVision
