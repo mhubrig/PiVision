@@ -98,10 +98,12 @@ Start a new project, and get a sample Twillio phone number.
 
 Instead of sudo mv motion_event.sh configfile.cfg /var/www/html/macros, 
 
-mv motion_event_twillio.sh configfile.cfg /var/www/html/macros and follow instructions using the motion_event_twillio.sh script instead of just motion_event.sh
+mv motion_event_twillio.sh configfile_twillio.cfg /var/www/html/macros and follow instructions using the *_twillio.sh and .cfg script instead of just motion_event.sh
 
 You need to note down account sid and auth token, and replace in the file just as with telegram where it shows
 
 account_sid="ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
 auth_token="your_auth_token"
+
+The motion_event_twillio will also have an area to enter your two phone numbers required for forwarding.
